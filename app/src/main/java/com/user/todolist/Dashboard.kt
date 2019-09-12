@@ -88,6 +88,11 @@ class Dashboard : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
         mRecyclerList.add(Table("Animal"))
         mRecyclerList.add(Table("Job"))
         mRecyclerList.add(Table("Work"))
+        mRecyclerList.add(Table("Fun"))
+        mRecyclerList.add(Table("Chill"))
+        mRecyclerList.add(Table("Friends"))
+        mRecyclerList.add(Table("Tips"))
+        mRecyclerList.add(Table("Calendar"))
         initRecyclerView()
     }
 

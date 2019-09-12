@@ -69,16 +69,14 @@
             app:layout_constraintGuide_percent="0.92"/>
 
 
-
     <ImageView
             android:layout_width="28dp"
             android:layout_height="23dp" app:srcCompat="@drawable/logo"
-            android:id="@+id/imageView" app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-            android:layout_marginEnd="8dp"
+            android:id="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/guidelineTop" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline1" android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="0.143"/>
+            app:layout_constraintStart_toStartOf="@+id/textView1"
+    />
 
     <TextView
             android:layout_width="133dp"
