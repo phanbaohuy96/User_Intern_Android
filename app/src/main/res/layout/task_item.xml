@@ -8,7 +8,6 @@
         app:cardElevation="0dp"
         app:cardMaxElevation="15dp"
         app:cardPreventCornerOverlap="false"
-        android:background="@color/heavygrey"
         app:cardUseCompatPadding="true"
         android:padding="20dp" xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -16,14 +15,17 @@
                 android:layout_width="400dp"
                 android:layout_height="400dp"
                 android:paddingLeft="10dp">
-            <TextView
+            <EditText
                     android:id="@+id/title"
                     android:textColor="#262626"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="16dp"
-                    android:text="Title"
+                    android:hint="Title"
                     android:textSize="16sp"
-                    android:layout_width="wrap_content"
+                    android:maxLines="1"
+                    android:maxWidth="180sp"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             <TextView
@@ -32,11 +34,10 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:maxLines="3"
                     android:drawablePadding="10dp"
                     android:ellipsize="end"
                     android:text="Task 1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

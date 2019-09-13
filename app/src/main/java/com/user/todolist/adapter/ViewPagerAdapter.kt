@@ -9,15 +9,15 @@ import android.view.View
 import androidx.viewpager.widget.PagerAdapter
 
 
-class ViewPagerAdapter(private val models: List<Task>, private val context: Context) : PagerAdapter() {
+class ViewPagerAdapter(private val tasks: List<Task>, private val context: Context) : PagerAdapter() {
     private var layoutInflater: LayoutInflater? = null
 
     override fun getCount(): Int {
-        return models.size
+        return tasks.size
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view.equals(`object`)
+        return view == `object`
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -31,8 +31,8 @@ class ViewPagerAdapter(private val models: List<Task>, private val context: Cont
         title = view.findViewById(R.id.title)
         desc = view.findViewById(R.id.subtask)
 
-        title.setText(models[position].title)
-        desc.setText(models[position].subtask)
+        title.text = tasks[position].title
+        desc.text = tasks[position].subtask
 
         container.addView(view, 0)
         return view
@@ -40,5 +40,6 @@ class ViewPagerAdapter(private val models: List<Task>, private val context: Cont
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
+        notifyDataSetChanged()
     }
 }

@@ -63,17 +63,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="0dp"
+            android:layout_width="374dp"
             android:alpha="1"
-            android:layout_height="52dp"
+            android:layout_height="60dp"
             android:background="@drawable/mybutton"
             tools:listitem="@layout/table_item"
-            tools:ignore="MissingConstraints"
+            android:paddingEnd="10dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2" android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2" android:layout_marginStart="12dp"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewGreets" android:layout_marginLeft="8dp"
-            app:layout_constraintVertical_bias="0.027"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewGreets" android:layout_marginLeft="12dp"
+            app:layout_constraintVertical_bias="0.0" android:paddingRight="10dp"/>
     <androidx.viewpager.widget.ViewPager
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -81,6 +81,7 @@
             android:foregroundGravity="center"
             android:layout_centerInParent="true"
             android:overScrollMode="never"
+            android:background="@color/colorAccent"
             android:clipToPadding="false"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
@@ -92,9 +93,9 @@
           android:layout_height="1dp"
           android:background="@color/heavygrey"
           android:alpha="0.5"
-          tools:layout_editor_absoluteX="0dp"
           app:layout_constraintTop_toTopOf="@+id/guideline3"
-          android:id="@+id/view" android:layout_marginTop="46dp"/>
+          android:id="@+id/view" android:layout_marginTop="46dp" app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
             android:layout_height="74dp"
