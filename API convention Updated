@@ -1,0 +1,43 @@
+**/One user can have many boards , one board can have many tasks ,board is only created when user is specified, task is only created when board is specified/**
++API Get Profile By Id(get API)
+_:4000/api/user
+_The header should have "tokenID"
++API Register Firebase(POST API)
+_:4000/api/user
+_The header shoud have "tokenIDS"
+_The body should have these parameter:firstName,lastName,userPhone,birthDay,avatarURL,email
++API create board(POST API)
+_:4000/api/user/board
+_The header should have "tokenID"
+_The body should have these parameter:boardID,boardName,status
++API read board(GET API)
+_:4000/api/user/board/:boardID
+_The header should have "tokenID"
++API update board(PUT API)
+_:4000/api/user/board
+_The header should have "tokenID"
+_The body should have these parameter:boardID(board that is to be updated),boardName,status
++API delete board(DELETE API)
+_:4000/api/user/board
+_The header should have "tokenID"
+_The body should have boardID(board that is to be deleted)
++API create task(POST API)
+_:4000/api/user/board/:boardID/task
+_The header should have "tokenID"
+_The body should have these parameters:taskID,taskName,status
++API read task(GET API)
+_:4000/api/user/board/:boardID/task/:taskID
+_The header should have "tokenID"
++API updated task(PUT API)
+_:4000/api/user/board/:boardID/task
+_The header should have "tokenID"
+_The body should have these parameters:taskID(task that is to be updated),taskName,status
++API delete task(DELETE API)
+_:4000/api/user/board/:boardID/task
+_The header should have "tokenID"
+_The body should have these parameters:taskID(task that is to be deleted)
++API get list tasks by boardID(GET API)
+_:4000/api/user/board/:boardID/tasks
+_The header should have "tokenID"
+
+

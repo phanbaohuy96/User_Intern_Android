@@ -1,5 +1,10 @@
-package com.user.todolist.adapter
+package com.user.todolist.model
 
-class Table(name: String) {
-    val Name: String = name
+import com.google.gson.annotations.SerializedName
+
+class Table(var name:String) {
+    @SerializedName("status")
+    var status: String = name
+    @SerializedName("count")
+    var count: String = ""
 }

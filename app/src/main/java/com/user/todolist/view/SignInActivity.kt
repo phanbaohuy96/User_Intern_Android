@@ -1,52 +1,65 @@
-package com.user.todolist
+package com.user.todolist.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import kotlinx.android.synthetic.main.activity_main.*
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GetTokenResult
+import com.user.todolist.R
 import com.user.todolist.databinding.ActivityMainBinding
+import com.user.todolist.model.User
 import com.user.todolist.viewmodel.SignInViewModel
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class SignInActivity : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
+    private var mUser: FirebaseUser? = null
+   private var currentUser: User = User()
+
+    private lateinit var signInViewModel:SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        val signInViewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        signInViewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
+            R.layout.activity_main
+        )
             .apply {
                 this.lifecycleOwner = this@SignInActivity
             }
 
         mAuth = FirebaseAuth.getInstance()
 
+
+        if (intent.getStringExtra("Type") == "Sign Up" )
+            editTextUSI.setText(intent.getStringExtra("Username"))
+
+
+        binding.user = currentUser
+
         textViewSU.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
         button1.setOnClickListener {
-            //signIn(view, editTextUSI.text.toString(), editTextPSI.text.toString())
-            var email = editTextUSI.text.toString()
-            var password = editTextPSI.text.toString()
+            val password = editTextPSI.text.toString()
+            val username = editTextUSI.text.toString()
 
-            if (email.isEmpty() || password.isEmpty())
+            if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill out all the fields", Toast.LENGTH_SHORT).show()
-            else
-                signIn(email, password)
+            } else
+                signIn(username, password)
         }
     }
 
@@ -55,13 +68,28 @@ class SignInActivity : AppCompatActivity() {
         mAuth?.signInWithEmailAndPassword(email, password)
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    var intent = Intent(this, DashboardActivity::class.java)
-                    startActivity(intent)
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    mUser = FirebaseAuth.getInstance().currentUser!!
+                    mUser!!.getIdToken(true)
+                        .addOnCompleteListener { task: Task<GetTokenResult> ->
+                            if (task.isSuccessful) {
+                                val idToken = task.result!!.token
+                                Log.d("Token", "signInWithEmail:success :$idToken")
+                                idToken?.let {
+                                    val intent = Intent(this, BoardActivity::class.java)
+                                    intent.putExtra("Token",idToken)
+                                    startActivity(intent)
+                                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
 
-                } else {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        }
+                else
+                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+
                 }
             }
-    }
 }
+

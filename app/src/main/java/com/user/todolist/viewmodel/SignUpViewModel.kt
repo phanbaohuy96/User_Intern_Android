@@ -1,6 +1,11 @@
-package com.user.todolist.model
+package com.user.todolist.viewmodel
 
 import androidx.lifecycle.ViewModel
-class SignUpViewModel: ViewModel(){
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.GetTokenResult
 
+class SignUpViewModel: ViewModel(){
+    fun callAPI(task: Task<GetTokenResult>) {
+
+    }
 }
