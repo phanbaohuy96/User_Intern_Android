@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
-                name="task"
-                type="com.user.todolist.model.Task"/>
+            name="task"
+            type="com.user.todolist.model.Task" />
     </data>
 
     <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            android:id="@+id/cardViewPager"
-            app:cardMaxElevation="15dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            android:padding="20dp">
+        android:id="@+id/cardViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="15dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
         <RelativeLayout
-                android:layout_width="400dp"
-                android:layout_height="400dp"
-                android:paddingLeft="10dp">
-            <TextView
-                    android:id="@+id/titleTask"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="@{task.taskName}"
-                    android:textSize="16sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:paddingLeft="10dp">
 
             <TextView
-                    android:id="@+id/subtask"
-                    android:layout_below="@id/titleTask"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:drawablePadding="10dp"
-                    android:ellipsize="end"
-                    android:text=""
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                android:id="@+id/titleTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="@{task.taskName}"
+                android:textColor="#262626"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/subtask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleTask"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="16dp"
+                android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:text="" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

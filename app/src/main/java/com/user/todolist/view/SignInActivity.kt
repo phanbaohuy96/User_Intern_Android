@@ -75,7 +75,7 @@ class SignInActivity : AppCompatActivity() {
                                 val idToken = task.result!!.token
                                 Log.d("Token", "signInWithEmail:success :$idToken")
                                 idToken?.let {
-                                    val intent = Intent(this, BoardActivity::class.java)
+                                    val intent = Intent(this, MainBoardActivity::class.java)
                                     intent.putExtra("Token",idToken)
                                     startActivity(intent)
                                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()

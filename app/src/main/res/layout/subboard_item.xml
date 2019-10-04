@@ -8,10 +8,11 @@
         android:id="@+id/subboardContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:drawableLeft="@drawable/ic_radio_button_checked_black_24dp"
-        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/bold"
         android:text="To do"
+        android:paddingBottom="13dp"
+        android:textColor="@color/white"
         android:textSize="15dp" />
 </LinearLayout>

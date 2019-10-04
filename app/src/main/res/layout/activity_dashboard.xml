@@ -98,8 +98,6 @@
             android:alpha="1"
             android:background="@drawable/mybutton"
             android:clipToPadding="false"
-            android:paddingEnd="10dp"
-            android:paddingRight="10dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

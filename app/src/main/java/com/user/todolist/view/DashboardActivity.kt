@@ -17,6 +17,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.user.todolist.R
 import com.user.todolist.adapter.RecyclerViewAdapter
 import com.user.todolist.adapter.ViewPagerAdapter
@@ -37,7 +38,7 @@ import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
 class DashboardActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
-    lateinit var addTaskDialog: Dialog
+    private lateinit var addTaskDialog: Dialog
 
 
     private lateinit var binding: ActivityDashboardBinding
@@ -49,6 +50,8 @@ class DashboardActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickLi
     private var loginToken: String? = null
     private var boardID: String? = null
     private var pos: Int = 0
+
+    private var mUser: FirebaseUser? = null
 
 
     @SuppressLint("CheckResult")
@@ -334,7 +337,7 @@ class DashboardActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickLi
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, BoardActivity::class.java)
+        val intent = Intent(this, MainBoardActivity::class.java)
         intent.putExtra("Token",loginToken)
         startActivity(intent)
     }

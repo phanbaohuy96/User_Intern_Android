@@ -54,18 +54,23 @@ class SignUpActivity : AppCompatActivity() {
 
             val confirmPassword = editTextCPSU.text.toString()
             val password = editTextPSU.text.toString()
+            val firstname = editTextFNSU.text.toString()
+            val lastname = editTextLNSU.text.toString()
+            val userphone = editTextUPSU.text.toString()
+            val birthday = editTextBDSU.text.toString()
             username = editTextUSU.text.toString()
 
-            if (password.isEmpty() || confirmPassword.isEmpty() || username.isEmpty())
+            if (password.isEmpty() || confirmPassword.isEmpty() || username.isEmpty() || firstname.isEmpty()
+                || lastname.isEmpty() || userphone.isEmpty() || birthday.isEmpty())
                 Toast.makeText(this, "Please fill out all the fields", Toast.LENGTH_SHORT).show()
             else if (password != confirmPassword)
                 Toast.makeText(this, "Confirm password does not match", Toast.LENGTH_SHORT).show()
             else
-                signUp(username, password)
+                signUp(username, password, firstname, lastname, userphone, birthday)
         }
     }
 
-    private fun signUp(email: String, password: String) {
+    private fun signUp(email: String, password: String, firstname: String, lastname: String, userphone: String, birthday: String) {
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -79,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
 
                                 idToken?.let {
                                     val newUser =
-                                        User("Hieu", "Nguyen", "696969", "32/98/1999", "mapnhucho")
+                                        User(firstname, lastname, userphone, birthday, "mapnhucho")
                                     client.createUSER(idToken, newUser).observeOn(
                                         AndroidSchedulers.mainThread()
                                     )

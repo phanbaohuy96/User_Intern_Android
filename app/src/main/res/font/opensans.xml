@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/bold"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/bolditalic"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/extrabold"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/extrabolditalic"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/light"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/lightitalic"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/regular"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/semibold"
+        android:fontWeight="400" />
+
+    <font
+        android:fontWeight="400"
+        android:font="@font/semibolditalic" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/italic" />
+</font-family>
