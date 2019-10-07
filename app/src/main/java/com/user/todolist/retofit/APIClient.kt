@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class APIClient {
-    private val BASE_URL = "http://103.221.223.126:4000"
+    private val BASE_URL = "http://103.221.223.126:400"
     private val client: APIInterface
 
     init {

@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -27,6 +29,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.text.DateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class BoardFragment : BaseFragment(), BoardAdapter.OnItemClickListener {
 
@@ -40,6 +43,9 @@ class BoardFragment : BaseFragment(), BoardAdapter.OnItemClickListener {
     private var loginToken: String? = null
 
     private var mUser: FirebaseUser? = null
+
+    private lateinit var mProgressBar: View
+
 
     companion object {
         fun newInstance(): ProfileFragment {
@@ -57,6 +63,11 @@ class BoardFragment : BaseFragment(), BoardAdapter.OnItemClickListener {
         boardViewModel = ViewModelProviders.of(this).get(BoardViewModel::class.java)
 
 
+        mProgressBar = binding.progressBar
+        mProgressBar.visibility = View.VISIBLE
+
+
+
         mUser = FirebaseAuth.getInstance().currentUser!!
         mUser!!.getIdToken(true)
             .addOnCompleteListener { task: Task<GetTokenResult> ->
@@ -64,10 +75,9 @@ class BoardFragment : BaseFragment(), BoardAdapter.OnItemClickListener {
                     loginToken = task.result!!.token.toString()
                     client.getUSER(loginToken!!).observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponseGET)
-
+                        .subscribe(this::handleResponseGET, this::onErrorGET)
                     setCurrentDate()
-
+                    boardViewModel.mRecyclerListBoard = ArrayList()
                     getBoards()
                     initBoardViewer()
                     addBoard()
@@ -184,7 +194,14 @@ class BoardFragment : BaseFragment(), BoardAdapter.OnItemClickListener {
 
     private fun handleResponseGET(user: User) {
         binding.user = user
+        mProgressBar.visibility = View.INVISIBLE
         Log.d("User: ", user.firstName)
+    }
+
+    private fun onErrorGET(error: Throwable){
+        mProgressBar.visibility = View.INVISIBLE
+        Log.d("Error",error.message!!)
+        activity!!.finish()
     }
 
     private fun handleResponseCREATE(user: User) {

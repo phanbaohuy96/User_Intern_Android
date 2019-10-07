@@ -25,6 +25,7 @@ class MainBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_board)
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.itemIconTintList = null
         bottomNav.setOnNavigationItemSelectedListener(navListener)
     }
 
